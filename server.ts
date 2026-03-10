@@ -1,4 +1,4 @@
-import { createServer } from "node:http";
+import { createServer, IncomingMessage, ServerResponse } from "node:http";
 import { readFileSync } from "node:fs";
 import {
   registerAppResource,
@@ -11,18 +11,32 @@ import { z } from "zod";
 
 const todoHtml = readFileSync("public/todo-widget.html", "utf8");
 
-const addTodoInputSchema = {
+const addTodoInputSchema = z.object({
   title: z.string().min(1),
-};
+});
 
-const completeTodoInputSchema = {
+const completeTodoInputSchema = z.object({
   id: z.string().min(1),
+});
+
+type AddTodoInput = z.infer<typeof addTodoInputSchema>;
+type CompleteTodoInput = z.infer<typeof completeTodoInputSchema>;
+
+type Todo = {
+  id: string;
+  title: string;
+  completed: boolean;
 };
 
-let todos = [];
+type TodoReply = {
+  content: Array<{ type: "text"; text: string }>;
+  structuredContent: { tasks: Todo[] };
+};
+
+let todos: Todo[] = [];
 let nextId = 1;
 
-const replyWithTodos = (message) => ({
+const replyWithTodos = (message?: string): TodoReply => ({
   content: message ? [{ type: "text", text: message }] : [],
   structuredContent: { tasks: todos },
 });
@@ -57,10 +71,10 @@ function createTodoServer() {
         ui: { resourceUri: "ui://widget/todo.html" },
       },
     },
-    async (args) => {
+    async (args: AddTodoInput | undefined) => {
       const title = args?.title?.trim?.() ?? "";
       if (!title) return replyWithTodos("Missing title.");
-      const todo = { id: `todo-${nextId++}`, title, completed: false };
+      const todo: Todo = { id: `todo-${nextId++}`, title, completed: false };
       todos = [...todos, todo];
       return replyWithTodos(`Added "${todo.title}".`);
     }
@@ -77,7 +91,7 @@ function createTodoServer() {
         ui: { resourceUri: "ui://widget/todo.html" },
       },
     },
-    async (args) => {
+    async (args: CompleteTodoInput | undefined) => {
       const id = args?.id;
       if (!id) return replyWithTodos("Missing todo id.");
       const todo = todos.find((task) => task.id === id);
@@ -99,7 +113,7 @@ function createTodoServer() {
 const port = Number(process.env.PORT ?? 8787);
 const MCP_PATH = "/mcp";
 
-const httpServer = createServer(async (req, res) => {
+const httpServer = createServer(async (req: IncomingMessage, res: ServerResponse) => {
   if (!req.url) {
     res.writeHead(400).end("Missing URL");
     return;
