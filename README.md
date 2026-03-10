@@ -27,7 +27,7 @@ The code is for testing use only, to quickly setup and understand MCP integratio
    ```
 3. **Run the server**
    ```bash
-   npx tsx server.ts
+   npx run dev
    ```
 
 4. **Expose local port to public internet**
