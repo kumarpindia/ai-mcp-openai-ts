@@ -1,5 +1,12 @@
 # MCP - OpenAI implementation through OpenAI apps and local MCP
 
+## What it does?
+
+This is a working code to demonstrate MCP integration with OpenAI ChatGPT. The integration allows **Creation of Tasks**, and **Completion of Tasks** through prompts. The MCP server is created locally using Node MCP SDK.
+
+The code is for testing use only, to quickly setup and understand MCP integration.
+
+
 ## Prerequisites
 
 - Npm
@@ -38,3 +45,17 @@
    - Click "+" -> "...More" and Choose the app created in Step 5
    - Type prompt "Add a new task to read book on MCP integration". You should see a UI with task created
    - Type prompt "Complete task to read book on MCP integration". You should see a UI with task ticked and strikethrough
+
+
+## Screenshots
+
+**Task Creation**
+
+<img width="1017" height="610" alt="Task Created" src="https://github.com/user-attachments/assets/680a73f2-95a2-4dc4-bac8-905b96acbb75" />
+
+
+
+**Task Completion**
+
+<img width="1017" height="610" alt="Task Completed" src="https://github.com/user-attachments/assets/701cb112-c8bf-48d6-b478-3ded532a18b5" />
+
