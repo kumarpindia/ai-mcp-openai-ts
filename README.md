@@ -29,18 +29,25 @@ The code is for testing use only, to quickly setup and understand MCP integratio
    ```bash
    npx run dev
    ```
+   
+   OR
+   
+   ```
+   npm run build
+   npm start
+   ```
 
-4. **Expose local port to public internet**
+5. **Expose local port to public internet**
    ```bash
    ngrok http 8787
    ```
 
-5. **ChatGPT account changes**
+6. **ChatGPT account changes**
    - Enable "Developer Mode" in ChatGPT through "Settings -> Apps -> Advanced Settings"
    - Click "Create app". Provide Name, MCP Server URL (http://<ngrok url from step 4>:8787/mcp)
    - Choose "No Auth" and tick "I understand..." for the test. Click "Create"
 
-6. **ChatGPT test**
+7. **ChatGPT test**
    - Go to "New chat"
    - Click "+" --> "...More" and Choose the app created in Step 5
    - Type prompt "Add a new task to read book on MCP integration". You should see a UI with task created
