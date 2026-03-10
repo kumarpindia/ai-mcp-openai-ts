@@ -21,9 +21,9 @@ The code is for testing use only, to quickly setup and understand MCP integratio
    cd ai-mcp-openai-ts
    ```
    
-2. **Install Node MCP SDK**
+2. **Install packages**
    ```bash
-   npm install @modelcontextprotocol/sdk @modelcontextprotocol/ext-apps zod
+   npm install
    ```
 3. **Run the server**
    ```bash
@@ -42,7 +42,7 @@ The code is for testing use only, to quickly setup and understand MCP integratio
 
 6. **ChatGPT test**
    - Go to "New chat"
-   - Click "+" -> "...More" and Choose the app created in Step 5
+   - Click "+" --> "...More" and Choose the app created in Step 5
    - Type prompt "Add a new task to read book on MCP integration". You should see a UI with task created
    - Type prompt "Complete task to read book on MCP integration". You should see a UI with task ticked and strikethrough
 
