@@ -18,7 +18,7 @@ The code is for testing use only, to quickly setup and understand MCP integratio
 
 1. **Navigate to the project directory:**
    ```bash
-   cd mcp-openai
+   cd ai-mcp-openai-ts
    ```
    
 2. **Install Node MCP SDK**
@@ -27,7 +27,7 @@ The code is for testing use only, to quickly setup and understand MCP integratio
    ```
 3. **Run the server**
    ```bash
-   node server.js
+   npx tsx server.ts
    ```
 
 4. **Expose local port to public internet**
