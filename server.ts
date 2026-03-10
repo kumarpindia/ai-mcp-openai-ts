@@ -1,3 +1,5 @@
+#!/usr/bin/env node
+
 import { createServer, IncomingMessage, ServerResponse } from "node:http";
 import { readFileSync } from "node:fs";
 import {
