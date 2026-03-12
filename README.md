@@ -54,6 +54,15 @@ The code is for testing use only, to quickly setup and understand MCP integratio
    - Type prompt "Complete task to read book on MCP integration". You should see a UI with task ticked and strikethrough
 
 
+## LLM Tool Invocation Flow
+
+1. User prompt is sent to OpenAI ChatGPT
+2. ChatGPT identifies a tool that can fulfill the request
+3. MCP server exposes tools through a structured interface
+4. Tool is executed locally
+5. Result is returned to the LLM for response generation
+   
+
 ## Screenshots
 
 **Task Creation**
